@@ -13,12 +13,19 @@ export interface PublicParticipant {
 export interface Group {
   id: number
   members: string[]
+  compatibility: number
+}
+
+export interface BestPair {
+  names: [string, string]
+  score: number
 }
 
 export interface GameState {
   status: 'lobby' | 'question' | 'results' | 'grouping' | 'done'
   currentQuestionIndex: number
   groupSize: number
+  showCompatibility: boolean
   questions: Question[]
   totalQuestions: number
   participants: PublicParticipant[]
@@ -26,4 +33,5 @@ export interface GameState {
   answeredCount: number
   totalCount: number
   groups: Group[]
+  bestPairs: BestPair[]
 }
