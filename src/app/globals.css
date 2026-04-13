@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+}
+
+@layer components {
+  .game-bg {
+    min-height: 100dvh;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #1a1a3e 100%);
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(20px);
+    border-radius: 1.25rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+
+  .option-btn {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border-radius: 0.875rem;
+    color: white;
+    font-weight: 600;
+    font-size: 1.05rem;
+    text-align: left;
+    transition: transform 0.1s ease, opacity 0.1s ease;
+    border: none;
+    cursor: pointer;
+  }
+  .option-btn:hover { opacity: 0.9; transform: scale(1.01); }
+  .option-btn:active { transform: scale(0.98); }
+  .option-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  .pill {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .my-pill {
+    background: #facc15;
+    color: #000;
+    font-weight: 700;
+    box-shadow: 0 0 0 3px #fde68a;
+  }
+
+  .other-pill {
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.9);
+  }
+
+  .status-badge {
+    display: inline-block;
+    padding: 0.2rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.pulse-slow { animation: pulse-slow 2s ease-in-out infinite; }
