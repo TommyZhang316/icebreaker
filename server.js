@@ -237,7 +237,13 @@ app.prepare().then(() => {
 
     // ── AUTH ────────────────────────────────────────────────
     socket.on('admin:auth', (password, cb) => {
-      cb(password === ADMIN_PASSWORD ? { success: true } : { error: '密码错误' })
+      if (password === ADMIN_PASSWORD) {
+        cb({ success: true })
+        // 认证成功后主动推一次当前状态，避免客户端漏掉初始推送
+        socket.emit('state', publicState())
+      } else {
+        cb({ error: '密码错误' })
+      }
     })
 
     // ── PARTICIPANT ─────────────────────────────────────────

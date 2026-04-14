@@ -155,8 +155,8 @@ export default function AdminPage() {
   const [newQ, setNewQ] = useState(EMPTY_NEW_Q)
   const [saved, setSaved] = useState(false)
 
+  // 立即挂上 state 监听，不等待认证——避免漏掉连接时服务器推送的初始 state
   useEffect(() => {
-    if (!authed) return
     const socket = getSocket()
     const onState = (state: GameState) => {
       setGs(state)
@@ -167,7 +167,7 @@ export default function AdminPage() {
     }
     socket.on('state', onState)
     return () => { socket.off('state', onState) }
-  }, [authed])
+  }, [])
 
   const emit = (event: string, data?: unknown) => getSocket().emit(event, data)
 
